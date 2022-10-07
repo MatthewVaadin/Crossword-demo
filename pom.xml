@@ -9,7 +9,7 @@
     <version>1.0.0</version>
     <name>Crossword Demo</name>
     <description>Demo application using crossword component and Collaboration Kit</description>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <properties>
         <vaadin.version>23.1.0</vaadin.version>
@@ -86,6 +86,12 @@
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-spring-boot-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>catalina</artifactId>
+            <version>6.0.53</version>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -97,7 +103,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.25</version>
+            <version>2.0.3</version>
         </dependency>
     </dependencies>
 
@@ -113,6 +119,10 @@
                     <wait>500</wait>
                     <maxAttempts>240</maxAttempts>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.1</version>
             </plugin>
 
             <plugin>

@@ -1,6 +1,7 @@
 package org.vaadin.addons.crossword.views;
 
-import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.vaadin.addons.crossword.Crossword;
@@ -39,11 +40,12 @@ public class CrosswordView extends VerticalLayout {
         Crossword crossword = new Crossword(localUser.getId());
 
         try {
-            File jsonFile = new File(
-                    "src/main/webapp/dictionary-com-03-10-2022.json");
+            URL jsonURL = CrosswordView.class.getResource(
+                    "/dictionary-com-03-10-2022.json");
+            InputStream jsonIn = jsonURL.openStream();
             Puzzle puzzle = new ObjectMapper()
                     .readerFor(Puzzle.class)
-                    .readValue(jsonFile);
+                    .readValue(jsonIn);
             crossword.setPuzzle(puzzle);
         } catch (Exception e) {
             e.printStackTrace();
